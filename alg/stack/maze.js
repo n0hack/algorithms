@@ -10,7 +10,6 @@ const maze = [
 ];
 const stack = [];
 const myPos = [0, 0];
-let popped;
 
 function findPath(stack, myPos) {
   if (myPos[0] < 0 || myPos[0] > 7 || myPos[1] < 0 || myPos[1] > 7) {

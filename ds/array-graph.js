@@ -37,9 +37,6 @@ class ArrayGraph {
     this.graphType = type.DIRECTED;
   }
 
-  // 그래프가 비어있는지 확인
-  isEmpty() {}
-
   // 정점 추가
   addVertex(vertexId) {
     // vertexId 유효성 체크

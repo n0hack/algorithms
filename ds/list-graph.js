@@ -1,3 +1,5 @@
+const { dfs, bfs } = require('../alg/graph/traversal');
+
 const mode = {
   VISITED: Symbol.for('VISITED'),
   NOT_VISITED: Symbol.for('NOT_VISITED'),
@@ -88,6 +90,8 @@ const v2 = new Vertex('2');
 const v3 = new Vertex('3');
 const v4 = new Vertex('4');
 const v5 = new Vertex('5');
+const v6 = new Vertex('6');
+const v7 = new Vertex('7');
 
 // 정점 추가
 graph.addVertex(v1);
@@ -95,25 +99,27 @@ graph.addVertex(v2);
 graph.addVertex(v3);
 graph.addVertex(v4);
 graph.addVertex(v5);
+graph.addVertex(v6);
+graph.addVertex(v7);
 
 // 간선 연결
 graph.addEdge(v1, new Edge(v1, v2, 0));
 graph.addEdge(v1, new Edge(v1, v3, 0));
-graph.addEdge(v1, new Edge(v1, v4, 0));
-graph.addEdge(v1, new Edge(v1, v5, 0));
 
-graph.addEdge(v2, new Edge(v2, v1, 0));
-graph.addEdge(v2, new Edge(v2, v3, 0));
+graph.addEdge(v2, new Edge(v2, v4, 0));
 graph.addEdge(v2, new Edge(v2, v5, 0));
 
-graph.addEdge(v3, new Edge(v3, v1, 0));
-graph.addEdge(v3, new Edge(v3, v2, 0));
+graph.addEdge(v3, new Edge(v3, v4, 0));
+graph.addEdge(v3, new Edge(v3, v6, 0));
 
-graph.addEdge(v4, new Edge(v4, v1, 0));
 graph.addEdge(v4, new Edge(v4, v5, 0));
+graph.addEdge(v4, new Edge(v4, v7, 0));
 
-graph.addEdge(v5, new Edge(v5, v1, 0));
-graph.addEdge(v5, new Edge(v5, v2, 0));
-graph.addEdge(v5, new Edge(v5, v4, 0));
+graph.addEdge(v5, new Edge(v5, v7, 0));
 
-graph.print();
+graph.addEdge(v6, new Edge(v6, v7, 0));
+
+// graph.print();
+
+dfs(v1);
+// bfs(v1);

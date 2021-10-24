@@ -1,11 +1,11 @@
-function calcDist(number, now, position, hand) {
+const calcDist = (number, now, position, hand) => {
   // 두 좌표 거리 계산
   let leftDist = Math.abs(position[now.left][0] - position[number][0]) + Math.abs(position[now.left][1] - position[number][1]);
   let rightDist = Math.abs(position[now.right][0] - position[number][0]) + Math.abs(position[now.right][1] - position[number][1]);
 
   if (leftDist === rightDist) return hand;
   return leftDist < rightDist ? 'left' : 'right';
-}
+};
 
 function solution(numbers, hand) {
   const position = {

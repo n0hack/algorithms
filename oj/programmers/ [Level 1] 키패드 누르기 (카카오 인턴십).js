@@ -3,6 +3,7 @@ const calcDist = (number, now, position, hand) => {
   let leftDist = Math.abs(position[now.left][0] - position[number][0]) + Math.abs(position[now.left][1] - position[number][1]);
   let rightDist = Math.abs(position[now.right][0] - position[number][0]) + Math.abs(position[now.right][1] - position[number][1]);
 
+  // 값이 동일하면 hand(왼손잡이/오른손잡이)를 반환
   if (leftDist === rightDist) return hand;
   return leftDist < rightDist ? 'left' : 'right';
 };

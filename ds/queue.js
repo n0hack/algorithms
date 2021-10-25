@@ -1,5 +1,4 @@
 class Queue {
-  // private field
   #queue;
 
   constructor(capacity) {

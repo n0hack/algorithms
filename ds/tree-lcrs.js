@@ -1,10 +1,3 @@
-/**
- * 트리 (Tree)
- * 나무를 닮아 있는 자료구조로써, DOM, 검색엔진, 데이터베이스 등에서 사용
- * 트리: 뿌리(Root) + 가지(Branch) + 잎(Leaf)의 조합
- * 차수(Degree), 깊이(Depth) === 높이(Height), 길이(Length)
- */
-
 // Left Child, Right Siblings Tree (LCRS)
 // Node
 class LCRSNode {

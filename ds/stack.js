@@ -1,5 +1,4 @@
 class Stack {
-  // private field
   #stack;
 
   constructor(size) {

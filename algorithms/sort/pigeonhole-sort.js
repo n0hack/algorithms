@@ -1,5 +1,6 @@
 // 피존홀 정렬
 // 각 요소 - 최소값을 한 후 피존홀 배열에 삽입
+
 const pigeonholeSort = (arr) => {
   const min = arr.reduce((pre, cur) => (pre < cur ? pre : cur));
   const max = arr.reduce((pre, cur) => (pre > cur ? pre : cur));

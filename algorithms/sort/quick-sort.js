@@ -1,5 +1,4 @@
 // 퀵 정렬
-// 병합 정렬처럼 분할 정복 컨셉의 알고리즘
 
 const partition = (arr, left, right) => {
   const pivot = left++;

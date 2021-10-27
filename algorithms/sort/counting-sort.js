@@ -32,8 +32,8 @@ const countingSort = (arr, fTable) => {
 const arr = [1, 2, 5, 3, 4, 2, 6, 3];
 const fTable = makeFTable(arr);
 
-// console.log(arr);
-// const sorted = countingSort(arr, fTable);
-// console.log(sorted);
+console.log(arr);
+const sorted = countingSort(arr, fTable);
+console.log(sorted);
 
 module.exports = { makeFTable, countingSort };

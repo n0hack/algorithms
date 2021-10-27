@@ -1,6 +1,5 @@
 // 기수 정렬
 // 각 숫자의 자릿수를 비교하여 정렬하는 알고리즘
-
 const { makeFTable } = require('./counting-sort');
 
 const countSort = (arr, exp) => {

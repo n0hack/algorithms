@@ -2,11 +2,13 @@
 const bubbleSort = (arr) => {
   // 정렬이 필요 없는 경우
   let needSort = false;
+
   for (let i = 1; i < arr.length; i++) {
     if (arr[i - 1] > arr[i]) {
       needSort = true;
     }
   }
+
   if (!needSort) return;
 
   for (let i = 0; i < arr.length - 1; i++) {

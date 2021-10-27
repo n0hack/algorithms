@@ -1,4 +1,5 @@
 // 병합 정렬
+
 const merge = (arr, left, mid, right) => {
   // 왼쪽 배열, 오른쪽 배열 생성
   const L = [];
@@ -31,11 +32,10 @@ const merge = (arr, left, mid, right) => {
 const mergeSort = (arr, left, right) => {
   if (left >= right) return;
 
-  // 분할
   const mid = Math.floor((right + left) / 2);
+
   mergeSort(arr, left, mid);
   mergeSort(arr, mid + 1, right);
-  // 병합
   merge(arr, left, mid, right);
 };
 

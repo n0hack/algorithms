@@ -1,5 +1,6 @@
 // 선택 정렬
 // 인덱스(minIndex)를 기반으로 정렬
+
 const selectionSort = (arr) => {
   for (let i = 0; i < arr.length - 1; i++) {
     let minIndex = i;

@@ -1,3 +1,5 @@
+// 괄호 평가
+
 function check(input) {
   const stack = [];
   let temp = 0;

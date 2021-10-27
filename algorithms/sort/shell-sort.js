@@ -1,5 +1,6 @@
 // 셸 정렬
 // 정렬할 요소를 그룹으로 나누어 삽입 정렬하고, 병합하는 식으로 동작
+
 const shellSort = (arr) => {
   let len = arr.length;
 

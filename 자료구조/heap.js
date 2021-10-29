@@ -41,7 +41,7 @@ class Heap extends Array {
     this.usedSize += 1;
   }
 
-  deleteMin() {
+  delete() {
     const deleteMin = this[0];
     this.usedSize -= 1;
 
@@ -128,7 +128,7 @@ class Heap extends Array {
   }
 }
 
-const heap = new Heap({ type: 'max' });
+const heap = new Heap({ type: 'min' });
 heap.insert(new Node(2));
 heap.insert(new Node(7));
 heap.insert(new Node(52));

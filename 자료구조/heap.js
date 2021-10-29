@@ -140,5 +140,6 @@ heap.insert(new Node(17));
 heap.insert(new Node(43));
 heap.insert(new Node(88));
 heap.insert(new Node(37));
-console.log(heap);
-console.log(heap.deleteMin());
+while (heap.length !== 0) {
+  console.log(heap.delete().data);
+}

@@ -1,9 +1,7 @@
 <p align="center">
-  <img src="./images/intro.jpg"/ width="100%">
+  <img src="./images/intro.jpg"/ width="100%" style="border-radius: 5px; margin-bottom: 12px;">
   <br
 </p>
-
-<br>
 
 # Is Algorithm Important?
 

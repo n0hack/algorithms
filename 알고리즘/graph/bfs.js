@@ -1,24 +1,24 @@
-function bfs(v) {
-  const queue = [];
+const bfs = (graph, start, visited) => {
+  const q = [];
 
-  v.visited = true;
-  process.stdout.write(`${v.data} `);
-  queue.push(v);
-  while (queue.length > 0) {
-    let popped = queue.shift();
-    let v = popped;
-    let e = popped.adjacencyList;
+  visited[start] = true;
+  q.push(start);
 
-    while (e !== null) {
-      v = e.target;
-      if (v !== null && !v.visited) {
-        process.stdout.write(`${v.data} `);
-        v.visited = true;
-        queue.push(v);
+  while (q.length > 0) {
+    let v = q.shift();
+    process.stdout.write(`${v} `);
+
+    for (let i of graph[v]) {
+      if (!visited[i]) {
+        q.push(i);
+        visited[i] = true;
       }
-      e = e.next;
     }
   }
-}
+  console.log();
+};
 
-module.exports = bfs;
+const graph = [[], [2, 3, 8], [1, 7], [1, 4, 5], [3, 5], [3, 4], [7], [2, 6, 8], [1, 7]];
+
+let visited = Array.from({ length: 9 }, () => false);
+bfs(graph, 1, visited);

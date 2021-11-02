@@ -32,6 +32,25 @@ function bfs(v) {
   }
 }
 
+const dfsTS = (v) => {
+  v.visited = true;
+
+  let e = v.adjacencyList;
+  while (e !== null) {
+    if (e.target !== null && !e.target.visited) dfs(e.target);
+    e = e.next;
+  }
+  process.stdout.write(`${v.data} `);
+};
+
+function topologicalSort(v) {
+  let temp = v;
+  while (temp !== null && !temp.visited) {
+    dfsTS(temp);
+    temp = temp.next;
+  }
+}
+
 class Vertex {
   constructor(data) {
     this.data = data;
@@ -105,13 +124,14 @@ class Graph {
 }
 
 const graph = new Graph();
-const v1 = new Vertex('1');
-const v2 = new Vertex('2');
-const v3 = new Vertex('3');
-const v4 = new Vertex('4');
-const v5 = new Vertex('5');
-const v6 = new Vertex('6');
-const v7 = new Vertex('7');
+const v1 = new Vertex('A');
+const v2 = new Vertex('B');
+const v3 = new Vertex('C');
+const v4 = new Vertex('D');
+const v5 = new Vertex('E');
+const v6 = new Vertex('F');
+const v7 = new Vertex('G');
+const v7 = new Vertex('H');
 
 graph.addVertex(v1);
 graph.addVertex(v2);
@@ -137,8 +157,10 @@ graph.addEdge(v5, new Edge(v5, v7, 0));
 
 graph.addEdge(v6, new Edge(v6, v7, 0));
 
-dfs(v1);
-console.log();
+// dfs(v1);
+// console.log();
 
-bfs(v1);
-console.log();
+topologicalSort(v1);
+
+// bfs(v1);
+// console.log();

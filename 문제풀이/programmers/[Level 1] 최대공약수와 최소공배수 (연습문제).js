@@ -29,11 +29,27 @@ function solution(n, m) {
   return result;
 }
 
-console.log(solution(3, 12));
-console.log(solution(2, 5));
+// console.log(solution(3, 12));
+// console.log(solution(2, 5));
 
 // function greatestCommonDivisor(a, b) {return b ? greatestCommonDivisor(b, a % b) : Math.abs(a);}
 // function leastCommonMultipleOfTwo(a, b) {return (a * b) / greatestCommonDivisor(a, b);}
 // function gcdlcm(a, b) {
 //     return [greatestCommonDivisor(a, b),leastCommonMultipleOfTwo(a, b)];
+// }
+
+function solution2(n, m) {
+  let nm;
+  let r;
+  for (nm = n * m; (r = n % m); n = m, m = r);
+  return [m, nm / m];
+}
+
+console.log(solution2(3, 12));
+console.log(solution2(2, 5));
+
+// function gcdlcm(a, b) {
+//   var r;
+//   for(var ab= a*b;r = a % b;a = b, b = r){}
+//   return [b, ab/b];
 // }

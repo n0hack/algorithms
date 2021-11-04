@@ -58,7 +58,6 @@ const dijkstra = (start) => {
     let now = getSmallestNode();
     visited[now] = true;
 
-    console.log(now);
     // 현재 노드와 연결된 다른 노드들 확인
     for (let j of graph[now]) {
       let cost = distance[now] + j[1];

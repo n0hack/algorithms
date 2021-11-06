@@ -4,8 +4,6 @@
  */
 
 const longestPalindrome = (s) => {
-  let answer = '';
-
   const expand = (left, right) => {
     while (left >= 0 && right < s.length && s[left] === s[right]) {
       left--;
@@ -17,12 +15,13 @@ const longestPalindrome = (s) => {
   // 테스트가 필요 없는 경우
   if (s.length < 2 || s === [...s].reverse().join('')) return s;
 
+  let answer = '';
   for (let i = 0; i < s.length - 1; i++) {
-    const odd = expand(i, i + 1);
-    const even = expand(i, i + 2);
-    console.log(odd, even);
-    if (answer.length < odd.length) answer = odd;
-    if (answer.length < even.length) answer = even;
+    const oneStep = expand(i, i + 1);
+    const twoStep = expand(i, i + 2);
+    console.log(oneStep, twoStep);
+    if (answer.length < oneStep.length) answer = oneStep;
+    if (answer.length < twoStep.length) answer = twoStep;
   }
 
   return answer;

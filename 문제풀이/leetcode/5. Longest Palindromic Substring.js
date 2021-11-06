@@ -2,7 +2,6 @@
  * @param {string} s
  * @return {string}
  */
-
 const longestPalindrome = (s) => {
   const expand = (left, right) => {
     while (left >= 0 && right < s.length && s[left] === s[right]) {

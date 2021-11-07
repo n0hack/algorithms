@@ -13,7 +13,7 @@
 
 <br>
 
-> 부족한 코드는 언제든 PR을 통해 피드백 주시면 감사하겠습니다! 🙂
+> 부족한 코드는 언제든 Issue || PR을 통해 피드백 주시면 감사하겠습니다! 🙂
 
 <br>
 
@@ -29,10 +29,10 @@
 
 ## References
 
+- [[Docs] GeeksforGeeks](https://www.geeksforgeeks.org/)
 - [[Book] 뇌를 자극하는 자료구조](http://www.yes24.com/Product/Goods/3524901)
 - [[Book] 파이썬 알고리즘 인터뷰](http://www.yes24.com/Product/Goods/91084402)
 - [[Book] 이것이 취업을 위한 코딩 테스트다](http://www.yes24.com/Product/Goods/91433923)
-- [GeeksforGeeks](https://www.geeksforgeeks.org/)
 
 <br>
 

@@ -10,7 +10,10 @@ const solution = (arr) => {
 };
 
 const solution2 = (arr) => {
-  return arr.filter((val, idx) => val !== arr[idx + 1]);
+  return arr.filter((val, idx) => {
+    console.log(arr[idx + 1]);
+    return val !== arr[idx + 1];
+  });
 };
 
 console.log(solution2([1, 1, 3, 3, 0, 1, 1]));

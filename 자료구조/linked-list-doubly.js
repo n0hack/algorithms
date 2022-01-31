@@ -7,7 +7,6 @@ class Node {
 }
 
 class LinkedList {
-  // private field
   #head;
 
   constructor() {

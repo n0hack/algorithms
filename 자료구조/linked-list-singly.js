@@ -79,5 +79,5 @@ list.append(new Node('A'));
 list.append(new Node('B'));
 list.append(new Node('C'));
 list.print();
-list.reverse();
+// list.reverse();
 list.print();

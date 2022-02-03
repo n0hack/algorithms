@@ -1,34 +1,31 @@
-// Left Child, Right Siblings Tree (LCRS)
-// Node
-class LCRSNode {
-  constructor(data) {
-    this.data = data;
-    this.leftChild = null;
-    this.rightSiblings = null;
-  }
+function LCRSNode(data) {
+  this.data = data;
+  this.left = null;
+  this.right = null;
 }
 
-// Append Child
 const appendChild = (parent, child) => {
-  if (parent.leftChild === null) {
-    parent.leftChild = child;
+  if (parent.left === null) {
+    parent.left = child;
   } else {
-    let temp = parent.leftChild;
-    while (temp.rightSiblings !== null) {
-      temp = temp.rightSiblings;
+    let temp = parent.left;
+    while (temp.right !== null) {
+      temp = temp.right;
     }
-    temp.rightSiblings = child;
+    temp.right = child;
   }
 };
 
-// Print tree
 const printTree = (node, depth) => {
   if (node === null) return;
-  for (let i = 0; i < depth; i++) process.stdout.write(' ');
-  console.log(node.data);
 
-  if (node.leftChild !== null) printTree(node.leftChild, depth + 1);
-  if (node.rightSiblings !== null) printTree(node.rightSiblings, depth);
+  for (let i = 0; i < depth; i++) {
+    process.stdout.write(' ');
+  }
+  process.stdout.write(`${node.data}\n`);
+
+  if (node.left !== null) printTree(node.left, depth + 1);
+  if (node.right !== null) printTree(node.right, depth);
 };
 
 const root = new LCRSNode('A');

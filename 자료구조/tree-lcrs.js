@@ -1,18 +1,18 @@
 function LCRSNode(data) {
   this.data = data;
-  this.left = null;
-  this.right = null;
+  this.leftChild = null;
+  this.rightSibling = null;
 }
 
 const appendChild = (parent, child) => {
-  if (parent.left === null) {
-    parent.left = child;
+  if (parent.leftChild === null) {
+    parent.leftChild = child;
   } else {
-    let temp = parent.left;
-    while (temp.right !== null) {
-      temp = temp.right;
+    let temp = parent.leftChild;
+    while (temp.rightSibling !== null) {
+      temp = temp.rightSibling;
     }
-    temp.right = child;
+    temp.rightSibling = child;
   }
 };
 
@@ -24,8 +24,8 @@ const printTree = (node, depth) => {
   }
   process.stdout.write(`${node.data}\n`);
 
-  if (node.left !== null) printTree(node.left, depth + 1);
-  if (node.right !== null) printTree(node.right, depth);
+  if (node.leftChild !== null) printTree(node.leftChild, depth + 1);
+  if (node.rightSibling !== null) printTree(node.rightSibling, depth);
 };
 
 const root = new LCRSNode('A');

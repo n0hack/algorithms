@@ -1,12 +1,12 @@
-// 스택 계산기
+const log = console.log;
 
 /**
- * Get priority of operator
+ * 연산자의 우선순위를 구하는 함수
  * @param {string} operator
  * @param {boolean} inStack
  * @returns {number} priority
  */
-function getPriority(operator, inStack) {
+const getPriority = (operator, inStack) => {
   if (operator === '+' || operator === '-') {
     return 1;
   } else if (operator === '*' || operator === '/') {
@@ -17,80 +17,87 @@ function getPriority(operator, inStack) {
   } else if (operator === ')') {
     return 4;
   }
-}
+};
 
 /**
- * Convert infix to postfix
+ * 중위 표현식을 후위 표현식으로 변환하는 함수
  * @param {string} infix
  * @returns {string} postfix
  */
-function getPostfix(infix) {
+const infixToPostfix = (infix) => {
   const operators = ['(', ')', '+', '-', '*', '/'];
   const stack = [];
   const postfix = [];
 
-  infix = infix.split(/[ ]+/);
-  infix.forEach((v) => {
-    if (operators.includes(v)) {
-      if (v === ')') {
-        let temp = stack.pop();
-        while (temp !== '(') {
-          postfix.push(temp);
-          temp = stack.pop();
+  infix = infix.split(' ');
+  infix.forEach((token) => {
+    if (operators.includes(token)) {
+      if (token === ')') {
+        // 토큰이 ')' 연산자인 경우, '('를 만날 때까지 Postfix에 삽입
+        let popped = stack.pop();
+        while (popped !== '(') {
+          postfix.push(popped);
+          popped = stack.pop();
         }
       } else {
         if (stack.length === 0) {
-          stack.push(v);
+          stack.push(token);
         } else {
-          let temp = stack.pop();
-          if (getPriority(temp, true) > getPriority(v, false)) {
-            postfix.push(temp);
+          // 최상위 노드와 토큰의 연산자 우선순위 비교
+          // 이 과정이 없으면 '1 - 3 * 2'의 후위 표현식이 '1 3 - 2 *'가 됨
+          let popped = stack.pop();
+          if (getPriority(popped, true) > getPriority(token, false)) {
+            postfix.push(popped);
           } else {
-            stack.push(temp);
+            stack.push(popped);
           }
-          stack.push(v);
+          stack.push(token);
         }
       }
     } else {
-      postfix.push(v);
+      // 토큰이 피연산자인 경우 Postfix에 삽입
+      postfix.push(token);
     }
   });
 
+  // 스택의 남은 노드(연산자)를 모두 후위에 붙임
   while (stack.length !== 0) {
     postfix.push(stack.pop());
   }
 
   return postfix.join(' ');
-}
+};
 
 /**
- * Calculate postfix
+ * 후위 표현식을 계산하는 함수
  * @param {string} postfix
  * @returns {number} result
  */
-function calculatePostfix(postfix) {
-  const stack = [];
+const calculate = (postfix) => {
   const operators = ['+', '-', '*', '/'];
+  const stack = [];
 
-  postfix.split(' ').forEach((v) => {
-    if (operators.includes(v)) {
-      let result;
+  postfix.split(' ').forEach((token) => {
+    if (operators.includes(token)) {
+      let operand1 = parseFloat(stack.pop());
+      let operand2 = parseFloat(stack.pop());
+      let temp;
 
-      if (v === '+') result = Number(stack.pop()) + Number(stack.pop());
-      else if (v === '-') result = Number(stack.pop()) - Number(stack.pop());
-      else if (v === '*') result = Number(stack.pop()) * Number(stack.pop());
-      else if (v === '/') result = Number(stack.pop()) / Number(stack.pop());
+      if (token === '+') temp = operand2 + operand1;
+      else if (token === '-') temp = operand2 - operand1;
+      else if (token === '*') temp = operand2 * operand1;
+      else if (token === '/') temp = operand2 / operand1;
 
-      stack.push(result);
+      stack.push(temp);
     } else {
-      stack.push(v);
+      stack.push(token);
     }
   });
 
   return stack[0];
-}
+};
 
-console.log(calculatePostfix(getPostfix('1 + 3')));
-console.log(calculatePostfix(getPostfix('23 / 7 + 12')));
-console.log(calculatePostfix(getPostfix('( 117.32 + 83 ) * 49')));
-console.log(calculatePostfix(getPostfix('1 - 3 * 2')));
+log(calculate(infixToPostfix('1 + 3')));
+log(calculate(infixToPostfix('23 / 7 + 12')));
+log(calculate(infixToPostfix('( 117.32 + 83 ) * 49')));
+log(calculate(infixToPostfix('1 - 3 * 2')));

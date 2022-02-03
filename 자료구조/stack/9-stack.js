@@ -1,3 +1,4 @@
+// Old Version
 class Stack {
   #stack;
 

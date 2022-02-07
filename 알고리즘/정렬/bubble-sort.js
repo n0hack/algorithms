@@ -1,7 +1,3 @@
-/**
- * 버블정렬 (오름차순)
- * @param {Array} arr
- */
 const bubbleSort = (arr) => {
   let needSort = false;
   for (i = 0; i < arr.length - 1; i++) {

@@ -1,7 +1,3 @@
-/**
- * 삽입정렬 (오름차순)
- * @param {Array} arr
- */
 const insertionSort = (arr) => {
   for (let i = 1; i < arr.length; i++) {
     // 이미 정렬이 되어 있는 경우 패스

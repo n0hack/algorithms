@@ -1,4 +1,3 @@
-// 기출문제
 // 파라메트릭 서치(Parametric Search)
 // 원하는 조건을 만족하는 가장 알맞은 값을 찾는 문제
 const readline = require('readline');

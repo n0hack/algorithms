@@ -10,7 +10,6 @@ rl.on('line', (line) => {
   input.push(line);
 }).on('close', () => {
   const [n, k] = input[0].split(' ').map((item) => parseInt(item));
-
   const arrA = input[1].split(' ').map((item) => parseInt(item));
   const arrB = input[2].split(' ').map((item) => parseInt(item));
 

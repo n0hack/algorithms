@@ -1,4 +1,3 @@
-// 기출 문제
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,

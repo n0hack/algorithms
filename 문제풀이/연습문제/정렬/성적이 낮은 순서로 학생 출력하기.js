@@ -1,4 +1,3 @@
-// D 기업 프로그래밍 콘테스트 예선
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,

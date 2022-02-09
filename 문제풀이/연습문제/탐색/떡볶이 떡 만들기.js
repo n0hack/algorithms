@@ -6,25 +6,6 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-const cut = (arr, target) => {
-  let min = 0;
-  let max = Math.max(...arr);
-
-  while (min <= max) {
-    const cut = Math.floor((min + max) / 2);
-    const after = arr.reduce((pre, cur) => {
-      let temp = cur - cut;
-      if (temp < 0) temp = 0;
-
-      return pre + temp;
-    }, 0);
-
-    if (after === target) return cut;
-    else if (after > target) min = cut + 1;
-    else if (after < target) max = cut - 1;
-  }
-};
-
 let input = [];
 
 rl.on('line', (line) => {
@@ -32,6 +13,30 @@ rl.on('line', (line) => {
 }).on('close', () => {
   const [n, m] = input[0].split(' ').map((item) => parseInt(item));
   const heights = input[1].split(' ').map((item) => parseInt(item));
-  console.log(cut(heights, m));
+  let result = 0;
+
+  let start = 0;
+  let end = Math.max(...heights);
+
+  while (start <= end) {
+    const mid = Math.floor((start + end) / 2);
+    const sum = heights.reduce((pre, cur) => {
+      let temp = cur - mid;
+      if (temp < 0) temp = 0;
+
+      return pre + temp;
+    }, 0);
+
+    if (sum === m) {
+      result = mid;
+      break;
+    } else if (sum > m) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  console.log(result);
   process.exit();
 });

@@ -1,4 +1,3 @@
-// transpose
 // 배열을 시계 방향으로 회전
 const transpose = (matrix) => {
   return matrix.reduce((result, row) => {

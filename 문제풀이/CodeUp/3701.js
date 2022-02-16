@@ -1,5 +1,5 @@
 const pascal = [];
-let n = 5;
+let n = 5; // 입력
 
 for (let i = 0; i < n; i++) {
   if (i === 0) {

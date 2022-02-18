@@ -96,5 +96,3 @@ graph.addEdge(V5, new Edge(V5, V4, 0));
 
 // 그래프 출력
 // graph.print();
-
-module.exports = graph;

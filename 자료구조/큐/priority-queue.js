@@ -3,8 +3,10 @@ function Node({ priority, data }) {
   this.data = data;
 }
 
-function PriorityQueue() {
+function PriorityQueue({ type }) {
   Array.call(this);
+  // min, max
+  this.type = type;
 }
 PriorityQueue.prototype = Object.create(Array.prototype);
 PriorityQueue.prototype.constructor = PriorityQueue;
@@ -15,10 +17,18 @@ PriorityQueue.prototype.enqueue = function (newData) {
 
   this.push(newData);
 
-  while (currentIndex > 0 && this[currentIndex].priority > this[parentIndex].priority) {
-    this.swap(currentIndex, parentIndex);
-    currentIndex = parentIndex;
-    parentIndex = this.getParent(currentIndex);
+  if (this.type === 'max') {
+    while (currentIndex > 0 && this[currentIndex].priority > this[parentIndex].priority) {
+      this.swap(currentIndex, parentIndex);
+      currentIndex = parentIndex;
+      parentIndex = this.getParent(currentIndex);
+    }
+  } else {
+    while (currentIndex > 0 && this[currentIndex].priority < this[parentIndex].priority) {
+      this.swap(currentIndex, parentIndex);
+      currentIndex = parentIndex;
+      parentIndex = this.getParent(currentIndex);
+    }
   }
 };
 
@@ -43,21 +53,44 @@ PriorityQueue.prototype.dequeue = function () {
     if (leftChildIndex >= this.length) break;
     if (rightChildIndex >= this.length) {
       selectedIndex = leftChildIndex;
-      if (this[selectedIndex].priority > this[parentIndex].priority) {
-        this.swap(selectedIndex, parentIndex);
-        parentIndex = selectedIndex;
+      if (this.type === 'max') {
+        if (this[selectedIndex].priority > this[parentIndex].priority) {
+          this.swap(selectedIndex, parentIndex);
+          parentIndex = selectedIndex;
+        } else {
+          break;
+        }
       } else {
-        break;
+        if (this[selectedIndex].priority < this[parentIndex].priority) {
+          this.swap(selectedIndex, parentIndex);
+          parentIndex = selectedIndex;
+        } else {
+          break;
+        }
       }
     } else {
-      if (this[leftChildIndex].priority > this[rightChildIndex].priority) selectedIndex = leftChildIndex;
-      else selectedIndex = rightChildIndex;
-
-      if (this[selectedIndex].priority > this[parentIndex].priority) {
-        this.swap(selectedIndex, parentIndex);
-        parentIndex = selectedIndex;
+      if (this.type === 'max') {
+        if (this[leftChildIndex].priority > this[rightChildIndex].priority) selectedIndex = leftChildIndex;
+        else selectedIndex = rightChildIndex;
       } else {
-        break;
+        if (this[leftChildIndex].priority < this[rightChildIndex].priority) selectedIndex = leftChildIndex;
+        else selectedIndex = rightChildIndex;
+      }
+
+      if (this.type === 'max') {
+        if (this[selectedIndex].priority > this[parentIndex].priority) {
+          this.swap(selectedIndex, parentIndex);
+          parentIndex = selectedIndex;
+        } else {
+          break;
+        }
+      } else {
+        if (this[selectedIndex].priority < this[parentIndex].priority) {
+          this.swap(selectedIndex, parentIndex);
+          parentIndex = selectedIndex;
+        } else {
+          break;
+        }
       }
     }
     leftChildIndex = this.getLeftChild(parentIndex);

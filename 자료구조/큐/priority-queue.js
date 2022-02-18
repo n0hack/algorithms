@@ -112,16 +112,16 @@ PriorityQueue.prototype.getLeftChild = function (index) {
   return index * 2 + 1;
 };
 
-const queue = new PriorityQueue();
-queue.enqueue(new Node({ priority: 2, data: '웹 서핑하기' }));
-queue.enqueue(new Node({ priority: 1, data: '넷플릭스 시청하기' }));
-queue.enqueue(new Node({ priority: 6, data: '물 마시기' }));
-queue.enqueue(new Node({ priority: 4, data: '코딩하기' }));
-queue.enqueue(new Node({ priority: 3, data: '블로그 포스팅' }));
-queue.enqueue(new Node({ priority: 5, data: '서점 다녀오기' }));
+// const queue = new PriorityQueue();
+// queue.enqueue(new Node({ priority: 2, data: '웹 서핑하기' }));
+// queue.enqueue(new Node({ priority: 1, data: '넷플릭스 시청하기' }));
+// queue.enqueue(new Node({ priority: 6, data: '물 마시기' }));
+// queue.enqueue(new Node({ priority: 4, data: '코딩하기' }));
+// queue.enqueue(new Node({ priority: 3, data: '블로그 포스팅' }));
+// queue.enqueue(new Node({ priority: 5, data: '서점 다녀오기' }));
 
-while (queue.length !== 0) {
-  console.log(queue.dequeue());
-}
+// while (queue.length !== 0) {
+//   console.log(queue.dequeue());
+// }
 
 module.exports = PriorityQueue;

@@ -122,4 +122,4 @@ graph.addEdge(v6, new Edge(v6, v7, 0));
 // graph.print();
 
 dfs(v1);
-// bfs(v1);
+bfs(v1);

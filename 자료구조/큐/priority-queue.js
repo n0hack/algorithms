@@ -90,3 +90,5 @@ queue.enqueue(new Node({ priority: 5, data: '서점 다녀오기' }));
 while (queue.length !== 0) {
   console.log(queue.dequeue());
 }
+
+module.exports = PriorityQueue;

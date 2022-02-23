@@ -23,6 +23,7 @@ for (let i = 1; i <= n; i++) {
 
 const topologySort = () => {
   const queue = [];
+  const temp = [...time];
 
   for (let i = 1; i <= n; i++) {
     if (indegree[i] === 0) queue.push(i);
@@ -31,7 +32,7 @@ const topologySort = () => {
   while (queue.length !== 0) {
     const now = queue.shift();
     for (const v of graph[now]) {
-      time[v] = Math.max(time[v], time[now] + time[v]);
+      time[v] = Math.max(time[v], temp[now] + time[v]);
       indegree[v]--;
       if (indegree[v] === 0) queue.push(v);
     }

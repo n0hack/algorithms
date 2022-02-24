@@ -18,5 +18,9 @@ const solution = (s) => {
   return words.join(' ');
 };
 
+const solution2 = (s) => {
+  return s.toUpperCase().replace(/(\w)(\w)/g, (a) => a[0] + a[1].toLowerCase());
+};
+
 const inputs = ['try hello world'];
 inputs.forEach((input) => console.log(solution(input)));

@@ -2,7 +2,9 @@ const solution = (arr) => {
   const answer = [];
 
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] !== arr[i + 1]) answer.push(arr[i]);
+    // 값이 달라지는 부분에서만 추가
+    if (arr[i] === arr[i + 1]) continue;
+    else answer.push(arr[i]);
   }
 
   return answer;

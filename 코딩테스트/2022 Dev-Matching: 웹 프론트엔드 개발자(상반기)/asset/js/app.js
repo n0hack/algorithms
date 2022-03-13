@@ -141,7 +141,7 @@ const makeSelectedList = ({ selectItem }) => {
     elSelectedLanguageList.append(li);
   });
 
-  // 로컬 스토리지 저장
+  // 로컬 스토리지 저장 (결과 발표 전에 추가 구현)
   // localStorage.set('selectedList', JSON.stringify(selectedList));
 };
 

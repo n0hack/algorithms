@@ -1,3 +1,5 @@
+import { getDataFromStorage, setDataToStorage } from './store.mjs';
+
 // DOM
 const elApp = document.querySelector('.App');
 const elSearchForm = document.querySelector('.SearchInput');

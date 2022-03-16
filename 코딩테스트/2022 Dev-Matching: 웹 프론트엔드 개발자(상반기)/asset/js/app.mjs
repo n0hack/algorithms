@@ -12,6 +12,11 @@ let elSuggestion = document.querySelector('.Suggestion');
 let selectedList = [];
 let suggestionIndex = 0;
 
+// Local Storage Key
+const SELECTED_LIST = 'SELECTED_LIST';
+const SELECTED_INDEX = 'SELECTED_INDEX';
+const USER_INPUT = 'USER_INPUT';
+
 // -------- 이벤트 리스너
 /**
  * SearchForm 이벤트 리스너 (submit)
@@ -42,7 +47,7 @@ const handleSearchFormKeyDown = (e) => {
  * 검색어 입력을 처리하기 위한 용도
  */
 const handleSearchInput = async (e) => {
-  const keyword = e.target.value;
+  const keyword = e ? e.target.value : elSearchInput.value;
   suggestionIndex = 0;
 
   // 입력값이 없는 경우 요청을 보내지 않음
@@ -52,6 +57,8 @@ const handleSearchInput = async (e) => {
   } else {
     clearSuggestion();
   }
+  // 로컬 스토리지 저장
+  setDataToStorage({ key: USER_INPUT, value: keyword });
 };
 
 /**
@@ -163,19 +170,26 @@ elSearchForm.addEventListener('submit', handleSearchFormSubmit);
 elSearchForm.addEventListener('keydown', handleSearchFormKeyDown);
 elSearchInput.addEventListener('input', debounce(handleSearchInput, 300));
 
+const initScreen = () => {
+  const SELECTED_LIST = 'SELECTED_LIST';
+  const SELECTED_INDEX = 'SELECTED_INDEX';
+  const USER_INPUT = 'USER_INPUT';
+
+  elSearchInput.value = getDataFromStorage({ key: USER_INPUT }) ?? '';
+  handleSearchInput();
+};
+
 // 렌더링
 const render = () => {
   // 초기 화면 정리
   clearSuggestion();
   clearSelectedLanguage();
 
-  // 로컬 스토리지 확인
-  // if(localStorage.getItem('selectedList')){
-  //   selectedList = JSON.parse(localStorage.getItem('selectedList'));
-  // }
-
   // 최초 접속 시 입력 폼에 포커스
   elSearchInput.focus();
+
+  // 로컬 스토리지 확인
+  initScreen();
 };
 
 render();

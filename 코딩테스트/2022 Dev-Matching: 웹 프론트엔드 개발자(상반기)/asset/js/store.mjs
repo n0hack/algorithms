@@ -1,4 +1,6 @@
 // 로컬 스토리지 관련 모듈
+export const store = {};
+
 export function getDataFromStorage({ key }) {
   const data = localStorage.getItem(key);
 

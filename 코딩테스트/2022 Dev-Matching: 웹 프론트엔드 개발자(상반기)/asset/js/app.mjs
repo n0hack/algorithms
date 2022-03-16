@@ -1,4 +1,6 @@
+import { requestAPI } from './request.mjs';
 import { getDataFromStorage, setDataToStorage } from './store.mjs';
+import { debounce } from './lib.mjs';
 
 // DOM
 const elApp = document.querySelector('.App');

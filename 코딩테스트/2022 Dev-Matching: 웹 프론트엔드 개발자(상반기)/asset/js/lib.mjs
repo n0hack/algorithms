@@ -1,5 +1,5 @@
 // API 최적화를 위해 Input에 디바운스 적용
-const debounce = (callback, delay) => {
+export const debounce = (callback, delay) => {
   let timer = null;
 
   return (e) => {

@@ -1,3 +1,5 @@
+import { debounce } from '../lib/lazy.js';
+
 export default function SearchInput({ $target, initialState, onChange }) {
   this.$element = document.createElement('form');
   this.$element.className = 'SearchInput';
@@ -15,13 +17,16 @@ export default function SearchInput({ $target, initialState, onChange }) {
   // 화면 렌더링 즉시 포커스
   this.$element[0].focus();
 
-  this.$element.addEventListener('keyup', (e) => {
-    const actionIgnoreKey = ['Enter', 'ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'];
+  this.$element.addEventListener(
+    'keyup',
+    debounce((e) => {
+      const actionIgnoreKey = ['Enter', 'ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'];
 
-    if (!actionIgnoreKey.includes(e.key)) {
-      onChange(e.target.value);
-    }
-  });
+      if (!actionIgnoreKey.includes(e.key)) {
+        onChange(e.target.value);
+      }
+    }, 1000)
+  );
 
   this.$element.addEventListener('submit', (e) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-export default function SearchInput({ $target, initialState }) {
+export default function SearchInput({ $target, initialState, onChange }) {
   this.$element = document.createElement('form');
   this.$element.className = 'SearchInput';
   this.state = initialState;
@@ -11,4 +11,19 @@ export default function SearchInput({ $target, initialState }) {
   };
 
   this.render();
+
+  // 화면 렌더링 즉시 포커스
+  this.$element[0].focus();
+
+  this.$element.addEventListener('keyup', (e) => {
+    const actionIgnoreKey = ['Enter', 'ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'];
+
+    if (!actionIgnoreKey.includes(e.key)) {
+      onChange(e.target.value);
+    }
+  });
+
+  this.$element.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
 }

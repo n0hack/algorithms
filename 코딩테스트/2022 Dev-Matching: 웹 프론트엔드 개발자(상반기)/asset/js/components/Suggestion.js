@@ -3,22 +3,30 @@ export default function Suggestion({ $target, initialState, onKeyup, onSelect })
   this.$element.className = 'Suggestion';
   $target.append(this.$element);
 
-  this.state = { selectedIndex: initialState.cursor, items: initialState.items };
+  this.state = { selectedIndex: initialState.cursor, keyword: initialState.keyword, items: initialState.items };
 
   this.setState = (nextState) => {
     this.state = nextState;
     this.render();
   };
 
+  this.renderMatchedItem = (keyword, item) => {
+    if (!item.toLowerCase().includes(keyword.toLowerCase())) {
+      return item;
+    }
+    const matchedText = item.match(new RegExp(keyword, 'gi'))[0];
+    return item.replace(new RegExp(matchedText, 'gi'), `<span class="Suggestion__item--matched">${matchedText}</span>`);
+  };
+
   this.render = () => {
-    const { items = [], selectedIndex } = this.state;
+    const { items = [], keyword, selectedIndex } = this.state;
     if (items.length > 0) {
       this.$element.style.display = 'block';
       // prettier-ignore
       this.$element.innerHTML = `
         <ul>
           ${items.map((item, index) => `
-            <li class="${index === selectedIndex? 'Suggestion__item--selected':''}" data-index="${index}">${item}</li>
+            <li class="${index === selectedIndex? 'Suggestion__item--selected':''}" data-index="${index}">${this.renderMatchedItem(keyword, item)}</li>
           `).join('')}
         </ul>
       `

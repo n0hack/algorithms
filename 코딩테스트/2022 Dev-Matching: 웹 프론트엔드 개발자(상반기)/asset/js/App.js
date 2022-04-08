@@ -3,6 +3,8 @@ import SelectedLanguage from './components/SelectedLanguage.js';
 import Suggestion from './components/Suggestion.js';
 import { fetchLanguages } from './lib/api.js';
 
+const MAX_DISPLAY_COUNT = 5;
+
 function saveStateToStorage({ key, value }) {
   const convertedData = JSON.stringify(value);
   localStorage.setItem(key, convertedData);
@@ -24,14 +26,27 @@ export default function App({ $target }) {
 
   this.setState = (nextState) => {
     this.state = { ...this.state, ...nextState };
-    suggestion.setState({ selectedIndex: this.state.cursor, items: this.state.fetchedLanguages });
+    suggestion.setState({
+      selectedIndex: this.state.cursor,
+      keyword: this.state.keyword,
+      items: this.state.fetchedLanguages,
+    });
     selectedLanguage.setState(this.state.selectedLanguages);
     saveStateToStorage({ key: 'app-state', value: this.state });
   };
 
   this.state = getStateFromStorage({ state: this.state, key: 'app-state' });
 
-  const selectedLanguage = new SelectedLanguage({ $target, initialState: this.state.selectedLanguages });
+  const selectedLanguage = new SelectedLanguage({
+    $target,
+    initialState: this.state.selectedLanguages,
+    onDoubleClick: (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const nextState = this.state.selectedLanguages.filter((_, idx) => idx !== index);
+
+      this.setState({ selectedLanguages: nextState });
+    },
+  });
 
   const searchInput = new SearchInput({
     $target,
@@ -44,12 +59,14 @@ export default function App({ $target }) {
         this.setState({ fetchedLanguages: languages, keyword });
       }
     },
+    MAX_DISPLAY_COUNT,
   });
 
   const suggestion = new Suggestion({
     $target,
     initialState: {
       cursor: this.state.cursor,
+      keyword: this.state.keyword,
       items: this.state.fetchedLanguages,
     },
     onKeyup: (selectedIndex) => {
@@ -66,6 +83,8 @@ export default function App({ $target }) {
         nextSelectedLanguages.splice(index, 1);
       }
       nextSelectedLanguages.push(language);
+
+      if (nextSelectedLanguages.length > MAX_DISPLAY_COUNT) nextSelectedLanguages.splice(0, 1);
 
       this.setState({ ...this.state, selectedLanguages: nextSelectedLanguages });
     },

@@ -14,8 +14,9 @@ export default function SearchInput({ $target, initialState, onChange }) {
 
   this.render();
 
-  // 화면 렌더링 즉시 포커스
+  // 화면 렌더링 즉시 포커스 (커서 맨 뒤)
   this.$element[0].focus();
+  this.$element[0].setSelectionRange(this.state.length, this.state.length);
 
   this.$element.addEventListener(
     'keyup',

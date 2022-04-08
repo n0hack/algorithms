@@ -1,4 +1,4 @@
-export default function Suggestion({ $target, initialState, onSelect }) {
+export default function Suggestion({ $target, initialState, onKeyup, onSelect }) {
   this.$element = document.createElement('div');
   this.$element.className = 'Suggestion';
   $target.append(this.$element);
@@ -45,6 +45,7 @@ export default function Suggestion({ $target, initialState, onSelect }) {
         }
 
         this.setState({ ...this.state, selectedIndex: nextIndex });
+        onKeyup(nextIndex);
       } else if (e.key === 'Enter') {
         onSelect(this.state.items[this.state.selectedIndex]);
       }

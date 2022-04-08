@@ -3,29 +3,45 @@ import SelectedLanguage from './components/SelectedLanguage.js';
 import Suggestion from './components/Suggestion.js';
 import { fetchLanguages } from './lib/api.js';
 
+function saveStateToStorage({ key, value }) {
+  const convertedData = JSON.stringify(value);
+  localStorage.setItem(key, convertedData);
+}
+
+function getStateFromStorage({ state, key }) {
+  const initialState = localStorage.getItem(key);
+  if (initialState) return { ...state, ...JSON.parse(initialState) };
+  else return state;
+}
+
 export default function App({ $target }) {
   this.state = {
     fetchedLanguages: [],
     selectedLanguages: [],
+    keyword: '',
+    cursor: 0,
   };
 
   this.setState = (nextState) => {
     this.state = { ...this.state, ...nextState };
-    suggestion.setState({ selectedIndex: 0, items: this.state.fetchedLanguages });
+    suggestion.setState({ selectedIndex: this.state.cursor, items: this.state.fetchedLanguages });
     selectedLanguage.setState(this.state.selectedLanguages);
+    saveStateToStorage({ key: 'app-state', value: this.state });
   };
 
-  const selectedLanguage = new SelectedLanguage({ $target, initialState: [] });
+  this.state = getStateFromStorage({ state: this.state, key: 'app-state' });
+
+  const selectedLanguage = new SelectedLanguage({ $target, initialState: this.state.selectedLanguages });
 
   const searchInput = new SearchInput({
     $target,
-    initialState: '',
+    initialState: this.state.keyword,
     onChange: async (keyword) => {
       if (keyword.length === 0) {
-        this.setState({ fetchedLanguages: [] });
+        this.setState({ fetchedLanguages: [], keyword: '' });
       } else {
         const languages = await fetchLanguages(keyword);
-        this.setState({ fetchedLanguages: languages });
+        this.setState({ fetchedLanguages: languages, keyword });
       }
     },
   });
@@ -33,8 +49,11 @@ export default function App({ $target }) {
   const suggestion = new Suggestion({
     $target,
     initialState: {
-      cursor: 0,
-      items: [],
+      cursor: this.state.cursor,
+      items: this.state.fetchedLanguages,
+    },
+    onKeyup: (selectedIndex) => {
+      this.setState({ cursor: selectedIndex });
     },
     onSelect: (language) => {
       alert(language);
@@ -49,7 +68,6 @@ export default function App({ $target }) {
       nextSelectedLanguages.push(language);
 
       this.setState({ ...this.state, selectedLanguages: nextSelectedLanguages });
-      console.log(this.state);
     },
   });
 }

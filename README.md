@@ -1,6 +1,5 @@
 <p align="center">
-  <img src="./images/intro.jpg"/ width="100%" style="border-radius: 5px; margin-bottom: 12px;">
-  <br
+  <img src="./images/intro.jpg"/ width="100%" style="border-radius: 8px; margin-bottom: 12px;" />
 </p>
 
 # Is Algorithm Important?
@@ -13,8 +12,6 @@
 
 > 이슈 또는 PR을 통해 코드 피드백 주시면 감사하겠습니다! 🙂
 
-<br>
-
 ## Directories
 
 - 문제풀이: 백준, 프로그래머스, 리트코드 등의 Online Judge 문제 풀이
@@ -23,16 +20,12 @@
 
 > 타입 챌린지를 제외한 모든 코드는 자바스크립트로 작성됩니다!
 
-<br>
-
 ## References
 
 - [[Docs] GeeksforGeeks](https://www.geeksforgeeks.org/)
 - [[Book] 뇌를 자극하는 자료구조](http://www.yes24.com/Product/Goods/3524901)
 - [[Book] 파이썬 알고리즘 인터뷰](http://www.yes24.com/Product/Goods/91084402)
 - [[Book] 이것이 취업을 위한 코딩 테스트다](http://www.yes24.com/Product/Goods/91433923)
-
-<br>
 
 ## License
 

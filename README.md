@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./images/intro.jpg" width="100%" style="border-radius: 8px; margin-bottom: 12px;" />
+  <img src="./images/intro.jpg" width="100%" />
 </p>
 
 # Is Algorithm Important?

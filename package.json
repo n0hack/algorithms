@@ -1,0 +1,11 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/n0hack/algorithms",
+  "author": "Lucid <nohack-@naver.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@type-challenges/utils": "^0.1.1"
+  }
+}

@@ -33,6 +33,6 @@
 
 <br>
 
-## License
+## Copyrights
 
-MIT &copy; 2022 [Lucid. Jihun Jeon](mailto:nohack-@naver.com)
+© 2022. [Lucid, Jihun Jeon](mailto:nohack-@naver.com) all rights reserved.

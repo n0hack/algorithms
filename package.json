@@ -4,7 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/n0hack/algorithms",
   "author": "Lucid <nohack-@naver.com>",
+  "scripts": {
+    "dev": "nodemon"
+  },
   "devDependencies": {
-    "@type-challenges/utils": "^0.1.1"
+    "@type-challenges/utils": "^0.1.1",
+    "nodemon": "^2.0.22"
   }
 }

@@ -10,6 +10,7 @@
     "js": "nodemon"
   },
   "devDependencies": {
+    "@type-challenges/utils": "^0.1.1",
     "@types/node": "^20.5.7",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",

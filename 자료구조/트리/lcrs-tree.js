@@ -1,10 +1,10 @@
-function LCRSNode(data) {
+function Node(data) {
   this.data = data;
   this.leftChild = null;
   this.rightSibling = null;
 }
 
-const appendChild = (parent, child) => {
+const append = (parent, child) => {
   if (parent.leftChild === null) {
     parent.leftChild = child;
   } else {
@@ -16,7 +16,7 @@ const appendChild = (parent, child) => {
   }
 };
 
-const printTree = (node, depth) => {
+const print = (node, depth) => {
   if (node === null) return;
 
   for (let i = 0; i < depth; i++) {
@@ -24,28 +24,45 @@ const printTree = (node, depth) => {
   }
   process.stdout.write(`${node.data}\n`);
 
-  if (node.leftChild !== null) printTree(node.leftChild, depth + 1);
-  if (node.rightSibling !== null) printTree(node.rightSibling, depth);
+  if (node.leftChild !== null) print(node.leftChild, depth + 1);
+  if (node.rightSibling !== null) print(node.rightSibling, depth);
 };
 
-const root = new LCRSNode('A');
-const b = new LCRSNode('B');
-const c = new LCRSNode('C');
-const d = new LCRSNode('D');
-const e = new LCRSNode('E');
-const f = new LCRSNode('F');
-const g = new LCRSNode('G');
-const h = new LCRSNode('H');
-const i = new LCRSNode('I');
-const j = new LCRSNode('J');
-const k = new LCRSNode('K');
+const printNodesAtLevel = (root, level) => {
+  if (!root) return;
 
-appendChild(root, b);
-appendChild(b, c);
-appendChild(b, d);
-appendChild(d, e);
-appendChild(d, f);
-appendChild(root, g);
-appendChild(g, h);
+  if (level <= 0) {
+    let temp = root;
+    while (temp !== null) {
+      process.stdout.write(`${temp.data} `);
+      temp = temp.rightSibling;
+    }
+  } else {
+    if (root.leftChild !== null) printNodesAtLevel(root.leftChild, level - 1);
+    if (root.rightSibling !== null) printNodesAtLevel(root.rightSibling, level);
+  }
+};
 
-printTree(root, 0);
+const root = new Node('A');
+const b = new Node('B');
+const c = new Node('C');
+const d = new Node('D');
+const e = new Node('E');
+const f = new Node('F');
+const g = new Node('G');
+const h = new Node('H');
+const i = new Node('I');
+const j = new Node('J');
+const k = new Node('K');
+
+append(root, b);
+append(b, c);
+append(b, d);
+append(d, e);
+append(d, f);
+append(root, g);
+append(g, h);
+
+print(root, 0);
+printNodesAtLevel(root, 2);
+console.log('');

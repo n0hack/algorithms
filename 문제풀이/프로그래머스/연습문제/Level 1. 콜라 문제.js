@@ -3,8 +3,8 @@ const solution = (a, b, n) => {
 
   while (n >= a) {
     const next = Math.floor(n / a) * b;
-    coke += next;
     n = next + n - Math.floor(next / b) * a;
+    coke += next;
   }
 
   return coke;

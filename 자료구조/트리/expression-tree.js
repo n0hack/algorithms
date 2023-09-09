@@ -31,6 +31,8 @@ const postorder = (node) => {
 };
 
 const build = (stack, node) => {
+  if (node === null) return;
+
   const token = stack.pop();
 
   switch (token) {
@@ -44,6 +46,7 @@ const build = (stack, node) => {
       // 오른쪽부터 트리 구성
       build(stack, node.right);
       build(stack, node.left);
+      break;
     default:
       node.data = token;
   }
@@ -52,35 +55,38 @@ const build = (stack, node) => {
 const calculate = (node) => {
   if (node === null) return;
 
-  let result;
+  let res;
+
   switch (node.data) {
     case '+':
     case '-':
     case '*':
     case '/':
-      let left = calculate(node.left);
-      let right = calculate(node.right);
+      const left = calculate(node.left);
+      const right = calculate(node.right);
 
-      if (node.data === '+') result = left + right;
-      else if (node.data === '-') result = left - right;
-      else if (node.data === '*') result = left * right;
-      else if (node.data === '/') result = left / right;
+      if (node.data === '+') res = left + right;
+      else if (node.data === '-') res = left - right;
+      else if (node.data === '*') res = left * right;
+      else if (node.data === '/') res = left / right;
       break;
     default:
-      return node.data;
+      res = node.data;
   }
 
-  return result;
+  return res;
 };
 
 const root = new Node();
 build(Array.from('43*75-/'), root);
-// Traversal
+
+// 순회
 preorder(root);
 console.log();
 inorder(root);
 console.log();
 postorder(root);
 console.log();
-// Calculate
+
+// 계산
 console.log('result:', calculate(root));

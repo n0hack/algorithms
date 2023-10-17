@@ -1,4 +1,5 @@
 // Runtime (56ms, 87.15%) / Memory (44.79MB, 58.74%)
+// Hash Table을 이용해 해결
 import { test } from './utils/test';
 
 function twoSum(nums: number[], target: number): number[] {

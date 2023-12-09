@@ -6,6 +6,7 @@
   "author": "Lucid <nohack-@naver.com>",
   "license": "MIT",
   "scripts": {
+    "py": "nodemon --exec python3",
     "ts": "nodemon --exec ts-node",
     "js": "nodemon"
   },

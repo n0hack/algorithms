@@ -4,8 +4,6 @@ type IsNever<T> = [T] extends [never] ? true : false;
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils';
 
-type T = IsNever<never>;
-
 type cases = [
   Expect<Equal<IsNever<never>, true>>,
   Expect<Equal<IsNever<never | string>, false>>,

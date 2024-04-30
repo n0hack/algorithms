@@ -1,8 +1,4 @@
 /* _____________ 여기에 코드 입력 _____________ */
-type IndexSignature = {
-  [key: string | number | symbol]: any;
-};
-
 type RemoveIndexSignature<T, P = PropertyKey> = {
   [K in keyof T as P extends K ? never : K extends P ? K : never]: T[K];
 };
